@@ -28,7 +28,7 @@ function App() {
   return (
     <AuthProvider>
       <CitiesProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={"/react-world-wise/"}>
           <Suspense fallback={<SpinnerFullPage />}>
             <Routes>
               <Route index element={<Homepage />} />
@@ -38,9 +38,9 @@ function App() {
               <Route
                 path='app'
                 element={
-                  <ProtectedRoute>
+                  // <ProtectedRoute>
                     <AppLayout />
-                  </ProtectedRoute>
+                  // </ProtectedRoute>
                 }
               >
                 <Route index element={<Navigate replace to='cities' />} />

@@ -5,9 +5,7 @@ import {
   useReducer,
   useCallback,
 } from 'react';
-
-// const BASE_URL = `http://localhost:8000`;
-const BASE_URL = `http://localhost:8001`;
+import { v4 as uuidv4 } from 'uuid';
 
 const CitiesContext = createContext();
 
@@ -28,6 +26,10 @@ function reducer(state, action) {
         currentCity: action.payload,
       };
     case 'city/created':
+      localStorage.setItem(
+        'cities',
+        JSON.stringify([...state.cities, action.payload])
+        );
       return {
         ...state,
         isLoading: false,
@@ -35,6 +37,12 @@ function reducer(state, action) {
         currentCity: action.payload,
       };
     case 'city/deleted':
+      localStorage.setItem(
+        'cities',
+        JSON.stringify(
+          state.cities.filter((city) => city.id !== action.payload)
+        )
+      );
       return {
         ...state,
         isLoading: false,
@@ -66,9 +74,8 @@ function CitiesProvider({ children }) {
     async function fetchCities() {
       dispatch({ type: 'loading' });
       try {
-        const res = await fetch(`${BASE_URL}/cities`);
-        const data = await res.json();
-        dispatch({ type: 'cities/loaded', payload: data });
+        const res = localStorage.getItem('cities') || localStorage.setItem('cities', []);
+        dispatch({ type: 'cities/loaded', payload: JSON.parse(res) });
       } catch (err) {
         dispatch({
           type: 'rejected',
@@ -81,12 +88,12 @@ function CitiesProvider({ children }) {
 
   const getCity = useCallback(
     async function getCity(id) {
-      if (Number(id) === currentCity.id) return;
+      if (id === currentCity.id) return;
 
       dispatch({ type: 'loading' });
       try {
-        const res = await fetch(`${BASE_URL}/cities/${id}`);
-        const data = await res.json();
+        const res = localStorage.getItem('cities');
+        const data = res.id === id
         dispatch({ type: 'city/loaded', payload: data });
       } catch (err) {
         dispatch({
@@ -100,14 +107,10 @@ function CitiesProvider({ children }) {
 
   async function addCity(newCity) {
     dispatch({ type: 'loading' });
+    const id = uuidv4();
     try {
-      const res = await fetch(`${BASE_URL}/cities`, {
-        method: 'POST',
-        body: JSON.stringify(newCity),
-        headers: { 'Content-Type': 'application/json' },
-      });
-      const data = await res.json();
-      dispatch({ type: 'city/created', payload: data });
+      const toAdd = { ...newCity, id };
+      dispatch({ type: 'city/created', payload: toAdd });
     } catch (err) {
       dispatch({
         type: 'rejected',
@@ -119,9 +122,7 @@ function CitiesProvider({ children }) {
   async function remCity(id) {
     dispatch({ type: 'loading' });
     try {
-      await fetch(`${BASE_URL}/cities/${id}`, {
-        method: 'DELETE',
-      });
+      console.log(id)
       dispatch({ type: 'city/deleted', payload: id });
     } catch (err) {
       dispatch({

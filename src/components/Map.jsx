@@ -1,4 +1,4 @@
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './Map.module.css';
 import {
   MapContainer,
@@ -59,9 +59,10 @@ function Map() {
         />
         {cities.map((city) => (
           <Marker
-            position={[city.position.lat, city.position.lng]}
-            key={city.id}
+          position={[city.position.lat, city.position.lng]}
+          key={city.id}
           >
+            {console.log(city)}
             <Popup>
               <Flag code={city.emoji} />
               <span>{city.cityName}</span>

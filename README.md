@@ -11,3 +11,4 @@ Currently, two official plugins are available:
  # Aditional notes about the preview:
 
 1. Due to the use of the json-server package, some of the functionalities where changed to use the local storage instead of the json-server package, so the online preview works fine.
+1. A locally fully functional version, with a fake connection to a server, where the **fetch** is used to manage basic CRUD data operations can be found [here](https://github.com/vonschappler/Ultimate-React/tree/main/Section_19/03-world-wise).
