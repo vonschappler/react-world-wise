@@ -13,7 +13,7 @@ import { useCities } from '../contexts/CitiesContext';
 import Flag from './Flag';
 import Button from './Button';
 import { useGeolocation } from '../hooks/useGeolocation';
-import { useUrlPosition } from '../hooks/useURLPosition';
+import { useUrlPosition } from '../hooks/useUrlPosition';
 
 function Map() {
   const { cities } = useCities();
