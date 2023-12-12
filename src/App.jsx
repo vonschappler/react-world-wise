@@ -38,9 +38,9 @@ function App() {
               <Route
                 path='app'
                 element={
-                  // <ProtectedRoute>
+                  <ProtectedRoute>
                     <AppLayout />
-                  // </ProtectedRoute>
+                  </ProtectedRoute>
                 }
               >
                 <Route index element={<Navigate replace to='cities' />} />
