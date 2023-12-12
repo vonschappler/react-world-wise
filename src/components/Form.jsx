@@ -7,9 +7,9 @@ import Button from './Button';
 import BackButton from './BackButton';
 import Message from './Message';
 import Spinner from './Spinner';
-import { useUrlPosition } from '/hooks/useURLPosition';
+import { useUrlPosition } from '../hooks/useUrlPosition';
 import Flag from './Flag';
-import { useCities } from '/contexts/CitiesContext';
+import { useCities } from '../contexts/CitiesContext';
 import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = 'https://api.bigdatacloud.net/data/reverse-geocode-client';
