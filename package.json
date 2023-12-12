@@ -1,5 +1,6 @@
 {
-  "name": "02-world-wise",
+  "homepage": "https://vonschappler.github.io/react-world-wise",
+  "name": "react-world-wise",
   "private": true,
   "version": "0.2.0",
   "type": "module",
