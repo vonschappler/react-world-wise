@@ -21,9 +21,9 @@ function App() {
   return (
     <AuthProvider>
       <CitiesProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={'/react-world-wise'}>
           <Suspense fallback={<SpinnerFullPage />}>
-            <Routes basename={'/react-world-wise'}>
+            <Routes>
               <Route index element={<Homepage />} />
               <Route path='product' element={<Product />} />
               <Route path='pricing' element={<Pricing />} />
