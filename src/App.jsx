@@ -23,7 +23,7 @@ function App() {
       <CitiesProvider>
         <BrowserRouter>
           <Suspense fallback={<SpinnerFullPage />}>
-            <Routes>
+            <Routes basename={'/react-world-wise'}>
               <Route index element={<Homepage />} />
               <Route path='product' element={<Product />} />
               <Route path='pricing' element={<Pricing />} />
