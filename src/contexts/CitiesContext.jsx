@@ -122,7 +122,6 @@ function CitiesProvider({ children }) {
   async function remCity(id) {
     dispatch({ type: 'loading' });
     try {
-      console.log(id)
       dispatch({ type: 'city/deleted', payload: id });
     } catch (err) {
       dispatch({
